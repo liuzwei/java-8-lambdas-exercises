@@ -11,14 +11,21 @@ import static java.util.stream.Collectors.toList;
 
 public class Question1 {
     public static int addUp(Stream<Integer> numbers) {
-        return Exercises.replaceThisWithSolution();
+        return numbers.reduce(0, (initial, sum) -> initial + sum);
     }
 
     public static List<String> getNamesAndOrigins(List<Artist> artists) {
-        return Exercises.replaceThisWithSolution();
+        return artists.stream().flatMap(artist -> {
+            return Stream.of(artist.getName(), artist.getNationality());
+        }).collect(toList());
     }
 
     public static List<Album> getAlbumsWithAtMostThreeTracks(List<Album> input) {
-        return Exercises.replaceThisWithSolution();
+        return input.stream().filter(album -> album.getTrackList().size() <= 3).collect(toList());
+    }
+
+    public static void main(String[] args) {
+        int i = addUp(Stream.of(1, 2, 3, 4));
+        System.out.println("i is "+i);
     }
 }
